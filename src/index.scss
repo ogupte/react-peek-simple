@@ -1,0 +1,16 @@
+@import "./reset";
+
+// Color Theme
+//$colorPrimary: #0081af; // Cerulean
+//$colorSecondary: #00abe7; // Vivid Cerulean
+//$colorTertiary: #2dc7ff; // Spiro Disco Ball
+//$colorQuaternary: #ead2ac; // Desert Sand
+//$colorQuinary: #eaba6b; // Middle Yellow Red
+
+body {
+	font-family: Arial,sans-serif;
+	color: #282828;
+}
+
+@import "./components/App";
+@import "./components/ComponentDoc";

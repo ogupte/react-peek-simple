@@ -1,0 +1,44 @@
+@mixin vertical-scoll-to-screen {
+	height: 100vh;
+	overflow: auto;
+	box-sizing: border-box;
+}
+
+.rms-App {
+	display: flex;
+
+	.component-list {
+		@include vertical-scoll-to-screen;
+		flex-basis: 200px;
+		flex-shrink: 0;
+		background-color: white;
+		box-shadow: 2px 0px 6px rgba(0,0,0,0.6);
+		padding: 6px;
+
+		hr {
+			height: 1px;
+			background-color: rgba(28,28,28,.2);
+			border-width: 0px;
+		}
+
+		a {
+			text-decoration: none;
+			color: #166bea;
+			font-size: smaller;
+
+			&:hover,&.current-component {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.component-details {
+		@include vertical-scoll-to-screen;
+		flex: 1;
+		padding: 6px;
+
+		pre {
+			font-family: monospace;
+		}
+	}
+}

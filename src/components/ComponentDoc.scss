@@ -1,0 +1,25 @@
+.rms-ComponentDoc {
+	.rms-ComponentDoc-title {
+		font-size: 32px;
+	}
+
+	.rms-ComponentDoc-propTypes {
+		width: 100%;
+		font-size: smaller;
+
+		thead tr {
+			background-color: rgba(0,0,0,0.46);
+			color: white;
+			font-weight: bold;
+
+			th {
+				padding: 6px;
+			}
+		}
+
+		tbody td {
+			border-bottom: 1px solid rgba(0,0,0,0.06);
+			padding: 6px;
+		}
+	}
+}
