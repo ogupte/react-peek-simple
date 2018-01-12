@@ -5,13 +5,13 @@ class ComponentDoc extends React.Component {
 
 	render() {
 		const {
-			manifest,
+			componentData,
 		} = this.props;
 
 		return (
 			<section className='rms-ComponentDoc'>
-				<h1 className='rms-ComponentDoc-title'>{manifest.manifestName}</h1>
-				<p>{manifest.description}</p>
+				<h1 className='rms-ComponentDoc-title'>{componentData.baseName}</h1>
+				<p>{componentData.description}</p>
 				<table className='rms-ComponentDoc-propTypes'>
 					<thead>
 						<tr>
@@ -24,19 +24,19 @@ class ComponentDoc extends React.Component {
 						</tr>
 					</thead>
 					<tbody>
-					{_.map(manifest.propTypes, (propType, propName) => (
-						<tr key={`${manifest.manifestName}-${propName}`}>
+					{_.map(componentData.propTypes, (propType, propName) => (
+						<tr key={`${componentData.baseName}-${propName}`}>
 							<td>{propName}</td>
 							<td>{propType.type}</td>
 							<td>{JSON.stringify(propType.args)}</td>
 							<td>{JSON.stringify(propType.default)}</td>
 							<td>{propType.isRequired && 'required'}</td>
-							<td>{propType.description}</td>
+							<td>{propType.text}</td>
 						</tr>
 					))}
 					</tbody>
 				</table>
-				<pre>{JSON.stringify(manifest, null, 2)}</pre>
+				<pre>{JSON.stringify(componentData, null, 2)}</pre>
 			</section>
 		);
 	}

@@ -10,17 +10,17 @@ class App extends React.Component {
 		};
 	}
 
-	handleSelectComponent(componentManifestName) {
+	handleSelectComponent(componentBaseName) {
 		return () => {
 			this.setState({
-				currentComponent: componentManifestName,
+				currentComponent: componentBaseName,
 			})
 		};
 	}
 
 	render() {
 		const {
-			componentManifests,
+			componentDataList,
 		} = this.props;
 
 		const {
@@ -30,27 +30,23 @@ class App extends React.Component {
 		return (
 			<div className='rms-App'>
 				<div className='component-list'>
-					{/*
-					<h1>Components</h1>
-					<div><a href="/manifest">manifest</a></div>
-					*/}
 					<div><a href='javascript:;' onClick={this.handleSelectComponent(null)}>Home</a></div>
 					<hr />
-					{componentManifests.map((componentManifest, index) => (
+					{componentDataList.map((componentData, index) => (
 						<div key={index}>
 							<a
-								className={componentManifest.manifestName === currentComponent ? 'current-component' : null}
+								className={componentData.baseName === currentComponent ? 'current-component' : null}
 								href='javascript:;'
-								onClick={this.handleSelectComponent(componentManifest.manifestName)}
+								onClick={this.handleSelectComponent(componentData.baseName)}
 							>
-								{componentManifest.manifestName}
+								{componentData.baseName}
 							</a>
 						</div>
 					))}
 				</div>
 				<div className='component-details'>
 					{currentComponent ? (
-						<ComponentDoc manifest={_.find(componentManifests, {manifestName: currentComponent})} /> 
+						<ComponentDoc componentData={_.find(componentDataList, {baseName: currentComponent})} /> 
 					) : (
 						<section>
 							<h1>Welcome to the Component docs!</h1>

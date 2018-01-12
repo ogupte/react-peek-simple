@@ -64,13 +64,13 @@ const bundleJs = () => rollup({
 	});
 });
 
-export default (componentManifests) => {
+export default (componentDataList) => {
 	try {
 		const vol = new Volume();
 		const fs = createFsFromVolume(vol);
 		const initialState = {
-			componentManifests,
-			currentComponent: componentManifests[0].manifestName,
+			componentDataList,
+			currentComponent: componentDataList[0].baseName,
 		};
 
 		const writeFile = promisify(fs.writeFile);
@@ -78,7 +78,7 @@ export default (componentManifests) => {
 		return Promise.all([
 
 			writeFile('/index.html', Buffer.from(htmlTemplate({
-				title: `React Manifest`,
+				title: `React Peek`,
 				loadReact: true,
 				loadLodash: true,
 				bundlePath: 'bundle.js',
@@ -87,9 +87,9 @@ export default (componentManifests) => {
 				body: renderToString(<App {...initialState} />),
 			}), 'utf8')),
 
-			promisify(fs.mkdir)('/manifest'),
+			promisify(fs.mkdir)('/react-peek'),
 
-			writeFile('/manifest/component-data.json', JSON.stringify(componentManifests, null, 2)),
+			writeFile('/react-peek/component-data.json', JSON.stringify(componentDataList, null, 2)),
 
 			bundleJs().then((code) =>
 				writeFile('/bundle.js', code)),
